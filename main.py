@@ -24,7 +24,6 @@ abbreviation_dict = {
 def main(training_dir, glacier_scene_path, zone_titles, cm, std):
     
     ### 1. Getting slopes to train classifiers + confusion matrices
-    #bands_by_zone will be flattened, wone_bands stay a dict
     df, bands_by_zone, zone_bands = load_data(training_dir, zone_titles, std)
 
     #Cleaning zone_bands
@@ -40,6 +39,9 @@ def main(training_dir, glacier_scene_path, zone_titles, cm, std):
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.6, random_state=42)
 
+
+    ## ---- Classifiers
+    # Gaussian
     classifier_gaussian = GaussianClassifier()
     classifier_gaussian.fit(X_train, y_train)
     y_pred, _ = classifier_gaussian.predict(X_test)

@@ -21,13 +21,12 @@ def save_confusion_matrix(cm, target_names, title, accuracy, filename):
     plt.close()
 
 def compare_confusion_matrices(y_test, y_pred, y_test_IA, y_pred_global_IA, y_pred_GLIA, target_names, accuracies, save_dir=None, std=False):
-    # Compute confusion matrices
+    # individual confusion matrices
     cm_Gaussian = confusion_matrix(y_test, y_pred)
     cm_GLIA = confusion_matrix(y_test_IA, y_pred_GLIA)
     cm_global = confusion_matrix(y_test_IA, y_pred_global_IA)
 
-    # Save individual confusion matrices
-    # Create directory based on target names
+    #Directory
     target_names_str = '_'.join(target_names)
     save_dir = os.path.join(save_dir, target_names_str)
     if std: 
@@ -39,12 +38,12 @@ def compare_confusion_matrices(y_test, y_pred, y_test_IA, y_pred_global_IA, y_pr
         save_confusion_matrix(cm_global, target_names, 'Global IA Confusion Matrix', accuracies[1],f'{save_dir}/cm_global.png')
         save_confusion_matrix(cm_GLIA, target_names, 'Local IA Classifier Confusion Matrix', accuracies[2],f'{save_dir}/cm_glia.png')
 
-    # Normalize confusion matrices
+    # Normalize 
     cm_Gaussian_percentage = cm_Gaussian / cm_Gaussian.sum(axis=1, keepdims=True)
     cm_GLIA_percentage = cm_GLIA / cm_GLIA.sum(axis=1, keepdims=True)
     cm_global_percentage = cm_global / cm_global.sum(axis=1, keepdims=True)
 
-    # Plot confusion matrices
+    # Plot 
     fig, ax = plt.subplots(1, 3, figsize=(24, 6))
     sns.heatmap(cm_Gaussian_percentage, annot=True, cmap='Blues', xticklabels=target_names, yticklabels=target_names, ax=ax[0], vmin=0, vmax=1, cbar=False)
     ax[0].set_title('Gaussian Classifier')
