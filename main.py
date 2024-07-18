@@ -4,8 +4,8 @@ from sklearn.model_selection import train_test_split
 from classifiers.gaussian_classifier import GaussianClassifier
 from classifiers.classifier_GLIA import classifier_GLIA
 from classifiers.global_IA import global_IA_clf
-from data.data_loader import extract_bands_glacier
-from data.data_preprocessor import load_data, prepare_training_data, prep_X_IA
+from data.data_loader import extract_bands_glacier, load_data
+from data.data_preprocessor import prepare_training_data, prep_X_IA
 from data.data_statistics import calculate_slopes_and_intercepts
 from utils.metrics import calculate_accuracy
 from utils.visualization import compare_confusion_matrices, plot_classification_results
