@@ -11,7 +11,6 @@ from utils.metrics import calculate_accuracy
 from utils.visualization import compare_confusion_matrices, plot_classification_results
 from sklearn.metrics import confusion_matrix, accuracy_score
 import os
-import rasterio
 
 abbreviation_dict = {
     'firn': 'Firn',
